@@ -1,0 +1,25 @@
+{
+  "name": "exquisite-corpse",
+  "version": "1.0.0",
+  "description": "Online surrealist poetry generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harpojaeger/exquisite-corpse.git"
+  },
+  "keywords": [
+    "exquisite",
+    "corpse",
+    "poetry",
+    "surrealism"
+  ],
+  "author": "Harpo Jaeger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harpojaeger/exquisite-corpse/issues"
+  },
+  "homepage": "https://github.com/harpojaeger/exquisite-corpse#readme"
+}
