@@ -10,13 +10,13 @@ var poemSchema = {
       title: 'poem schema',
       type: 'object',
       properties: {
-        poemId: { type: 'integer' },
-        startTime: { type: 'integer' },
-        endTime: { type: 'integer' },
+        id: { type: 'integer' },
+        starttime: { type: [ 'string', 'null' ] },
+        endtime: { type: [ 'string', 'null' ] },
         lines: { type: 'array' },
         completed: {type: 'boolean' },
       },
-      required: [ 'poemId', 'lines', 'completed' ]
+      required: [ 'id', 'lines', 'completed' ]
     }
 
 describe('The poem fetcher', function() {
