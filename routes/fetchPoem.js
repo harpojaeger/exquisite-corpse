@@ -10,6 +10,7 @@ var knex = require('knex')({
 })
 
 router.get('/random', function(req, res) {
+  console.log('received request for random poem')
   knex('poems')
   .select('*')
   .where({ completed: 'false' })
@@ -20,6 +21,7 @@ router.get('/random', function(req, res) {
   })
 })
 router.get('/completed', function(req, res) {
+  console.log('received request for completed poems')
   knex('poems')
   .select('*')
   .where({ completed: 'true' })
