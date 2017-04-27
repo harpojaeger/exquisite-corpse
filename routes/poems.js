@@ -12,8 +12,16 @@ var knex = require('knex')({
 // Create a new poem
 router.post('/', function(req, res) {
   console.log(req.body)
-  //knex('poems')
-  res.send(null)
+  knex('poems')
+  .insert(
+    {
+      lines: [req.body.line]
+    }
+  )
+  .then(
+    res.sendStatus(200)
+  )
+
 })
 
 // Updating poems
