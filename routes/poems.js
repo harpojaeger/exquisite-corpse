@@ -24,16 +24,16 @@ router.post('/', function(req, res) {
 })
 
 // Updating poems
-router.put('/', function(req, res) {
+router.put('/:id', function(req, res) {
   var completed = req.body.completed || false
-  console.log(req.body,'completed:',completed)
+  console.log(req.params.id, req.body, 'completed:', completed)
   knex('poems')
   .update({
       lines: knex.raw('array_append(lines, ?)', req.body.line),
       completed: completed
   })
   .where({
-    id: req.body.id
+    id: req.params.id
   })
   .catch(function(e){
     console.log(e)
