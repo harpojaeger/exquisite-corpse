@@ -25,9 +25,23 @@ router.post('/', function(req, res) {
 
 // Updating poems
 router.put('/', function(req, res) {
+  var completed = req.body.completed || false
+  console.log(req.body,'completed:',completed)
   knex('poems')
   .update({
-      colName: knex.raw('array_append(colName, ?)', ['cats'])
+      lines: knex.raw('array_append(lines, ?)', req.body.line),
+      completed: completed
+  })
+  .where({
+    id: req.body.id
+  })
+  .catch(function(e){
+    console.log(e)
+    res.sendStatus(500)
+  })
+  .then(function(victory) {
+    console.log(victory)
+    res.sendStatus(200)
   })
 })
 
