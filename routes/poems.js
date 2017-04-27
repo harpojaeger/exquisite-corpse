@@ -26,11 +26,15 @@ router.post('/', function(req, res) {
 // Updating poems
 router.put('/:id', function(req, res) {
   var completed = req.body.completed || false
+  var endtime = null
+  // Cast the current time to seconds
+  if(completed) endtime = knex.raw('(extract(epoch from now()) * 1000)')
   console.log(req.params.id, req.body, 'completed:', completed)
   knex('poems')
   .update({
       lines: knex.raw('array_append(lines, ?)', req.body.line),
-      completed: completed
+      completed: completed,
+      endtime: endtime
   })
   .where({
     id: req.params.id
