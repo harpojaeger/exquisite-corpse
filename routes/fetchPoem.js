@@ -5,7 +5,7 @@ var pg = require('pg')
 //pg.defaults.ssl = true
 var knex = require('knex')({
   client: 'pg',
-  connection: process.env.LOCAL_DATABASE_URL,
+  connection: process.env.DATABASE_URL,
   searchPath: 'knex,public'
 })
 

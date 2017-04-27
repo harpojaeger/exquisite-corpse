@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
 })
 
 var fetchPoem = require('./routes/fetchPoem')
-app.use('/poem', fetchPoem)
+app.use('/poems', fetchPoem)
 
 
 app.listen(port, function() {
