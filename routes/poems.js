@@ -46,13 +46,14 @@ router.put('/:id', function(req, res) {
 })
 
 
+
 router.get('/random', function(req, res) {
   knex('poems')
   .select('*')
   .where({ completed: 'false' })
   .then(function(rows){
     var randomPoem = rows[Math.floor(Math.random() * rows.length)]
-    console.log('Returned poem',randomPoem.id)
+    console.log('Returned random: ',randomPoem.id)
     res.send(randomPoem)
   })
 })
@@ -64,6 +65,16 @@ router.get('/completed', function(req, res) {
   .then(function(rows){
     console.log('Returned',rows.length,'completed poems')
     res.send(rows)
+  })
+})
+
+router.get('/:id', function(req, res) {
+  knex('poems')
+  .select('*')
+  .where({id: req.params.id})
+  .then(function(poem) {
+    console.log('Returned poem', poem.id)
+    res.send(poem)
   })
 })
 
