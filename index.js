@@ -23,8 +23,8 @@ app.get('/', function(req, res) {
   res.send('Hello, world.')
 })
 
-var fetchPoem = require('./routes/fetchPoem')
-app.use('/poems', fetchPoem)
+var poems = require('./routes/poems')
+app.use('/poems', poems)
 
 
 app.listen(port, function() {

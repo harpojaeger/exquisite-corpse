@@ -9,6 +9,22 @@ var knex = require('knex')({
   searchPath: 'knex,public'
 })
 
+// Create a new poem
+router.post('/', function(req, res) {
+  console.log(req.body)
+  //knex('poems')
+  res.send(null)
+})
+
+// Updating poems
+router.put('/', function(req, res) {
+  knex('poems')
+  .update({
+      colName: knex.raw('array_append(colName, ?)', ['cats'])
+  })
+})
+
+
 router.get('/random', function(req, res) {
   knex('poems')
   .select('*')
