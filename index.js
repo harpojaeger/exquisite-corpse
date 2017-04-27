@@ -1,6 +1,7 @@
 var express = require('express')
    ,app = express()
    ,bodyParser = require('body-parser')
+   ,cors = require('cors')
    ,port = process.env.PORT || 5000
 require('dotenv').config()
 
@@ -9,11 +10,9 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-  next()
-})
+app.use(cors())
+//Enable CORS for PUT (a non-standard verb)
+app.options('*', cors())
 
 app.get('/favicon.ico', function(req, res) {
   res.send(null)
