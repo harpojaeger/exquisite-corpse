@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start-dev": "concurrently \"npm run start-server\" \"npm run start-dev-client\"",
+    "start-dev": "npm-run-all -p start-server start-dev-client",
     "start-server": "node server.js",
     "start-dev-client": "cd client && npm run start"
   },
@@ -36,7 +36,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-json-schema": "^1.4.0",
-    "concurrently": "^3.4.0",
+    "npm-run-all": "^4.0.2",
     "supertest": "^3.0.0"
   }
 }

@@ -28,7 +28,7 @@ app.use('/poems', poems)
 
 
 app.listen(port, function() {
-  console.log('Node app is running on port',port)
+  console.log('Server is running on port',port)
 })
 
 module.exports = app
