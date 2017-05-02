@@ -1,8 +1,9 @@
 var express = require('express')
    ,app = express()
    ,bodyParser = require('body-parser')
-   ,port = process.env.PORT || 5000
 require('dotenv').config()
+var port = process.env.PORT || 5000
+
 
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({
@@ -10,6 +11,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 if (process.env.NODE_ENV === 'production') {
+  console.log('production mode')
   app.use(express.static('client/build'));
 }
 
