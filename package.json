@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start-dev": "npm-run-all -p start-server start-dev-client",
+    "start": "npm run build-css & npm-run-all -p watch-css start-server start-client",
     "start-server": "node server.js",
-    "start-dev-client": "cd client && npm run start"
+    "start-client": "cd client && npm run start",
+    "build-css": "cd client && npm run build-css",
+    "watch-css": "cd client && npm run watch-css"
   },
   "repository": {
     "type": "git",

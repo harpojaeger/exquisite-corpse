@@ -1,0 +1,27 @@
+input.editor {
+  width: calc(100% - 200px);
+  display:inline;
+  margin-right: 10px;
+}
+
+.button {
+  color: #e6e6e6;
+  background: #0a0a0a;
+  border: none;
+  font-size: 1.5em;
+  height: 1.5em;
+  border-radius: 3px;
+  width: 75px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.button:hover:enabled {
+  backround: linear-gradient(#111,#0A0A0A);
+  color: #fff;
+  text-decoration: none;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
