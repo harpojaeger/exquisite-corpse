@@ -1,4 +1,5 @@
 var React = require('react')
+var PropTypes = require('prop-types')
 var api = require('../../utils/api')
 const Entities = require('html-entities').AllHtmlEntities
 const entities = new Entities()
@@ -151,6 +152,10 @@ class Editor extends React.Component {
       </div>
     )
   }
+}
+
+Editor.propTypes = {
+  refreshCompletedPoems: PropTypes.func.isRequired,
 }
 
 module.exports = Editor

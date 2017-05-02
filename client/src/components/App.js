@@ -15,10 +15,12 @@ class App extends React.Component {
     }
 
     this.refreshCompletedPoems = this.refreshCompletedPoems.bind(this)
+    this.refreshPoemCounts = this.refreshPoemCounts.bind(this)
   }
 
   componentDidMount () {
     this.refreshCompletedPoems()
+    this.refreshPoemCounts()
   }
 
   refreshCompletedPoems() {
@@ -30,12 +32,31 @@ class App extends React.Component {
       }.bind(this))
   }
 
+  refreshPoemCounts() {
+    api.countCompleted()
+    .then( (count) => {
+      this.setState({
+        completedcount: count
+      })
+    })
+
+    api.countUncompleted()
+    .then( (count) => {
+      this.setState({
+        uncompletedcount: count
+      })
+    })
+  }
+
   render() {
     const longEnoughTooltip = (<Tooltip id='long_enough_explanation'>Requiring a minimum poem length has lead to more interesting poems and less trolling.</Tooltip>)
     return (
       <div className='app'>
         <h1>Exquisite Corpse</h1>
         <Editor refreshCompletedPoems={this.refreshCompletedPoems}/>
+        <div>
+          Currently there are {this.state.uncompletedcount} open poems and {this.state.completedcount} completed poems.
+        </div>
         <h4>What is this?</h4>
         <p>Collective, anonymous Internet poetry, written one line at a time.  Anybody can contribute a line, seeing only the one that came before.  Once a poem is long enough
         <OverlayTrigger
