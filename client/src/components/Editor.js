@@ -72,6 +72,7 @@ class Editor extends React.Component {
         if(completed) this.props.refreshCompletedPoems()
       }.bind(this))
     }
+    this.props.refreshPoemCounts()
   }
 
   handleNewPoemSubmit(e) {
@@ -87,8 +88,11 @@ class Editor extends React.Component {
         })
       }.bind(this))
     }
+    this.props.refreshPoemCounts()
   }
   render() {
+    var uncompletedcount = this.props.uncompletedcount
+    var completedcount = this.props.completedcount
     return(
       <div className='editor'>
         <div className={this.state.id ? '' : 'hidden'}>
@@ -122,8 +126,8 @@ class Editor extends React.Component {
                 name='action'
                 onClick={this.handleNextLineSubmit}
                 value='end'
-                // Only display the end button if the poem is already at least 10 lines long
-                disabled={this.state.promptloading || this.state.numlines < 10}>
+                // Only display the end button if the poem is already at least 10 lines long and there are at least 11 open poems (i.e. don't let the number of open poems ever drop below 10).
+                disabled={this.state.promptloading || this.state.numlines < 10 || this.props.uncompletedcount < 10 }>
                 End
               </Button>
             </ButtonGroup>
@@ -149,6 +153,9 @@ class Editor extends React.Component {
             </Button>
           </form>
         </div>
+        <div>
+          Currently there {uncompletedcount === 1 ? 'is' : 'are'} {uncompletedcount} open poem{uncompletedcount !== 1 && 's'} and {completedcount} completed poems.
+        </div>
       </div>
     )
   }
@@ -156,6 +163,8 @@ class Editor extends React.Component {
 
 Editor.propTypes = {
   refreshCompletedPoems: PropTypes.func.isRequired,
+  completedcount: PropTypes.number.isRequired,
+  uncompletedcount: PropTypes.number.isRequired,
 }
 
 module.exports = Editor

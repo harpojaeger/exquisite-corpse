@@ -11,7 +11,9 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      poems: []
+      poems: [],
+      completedcount: 0,
+      uncompletedcount: 0,
     }
 
     this.refreshCompletedPoems = this.refreshCompletedPoems.bind(this)
@@ -53,10 +55,12 @@ class App extends React.Component {
     return (
       <div className='app'>
         <h1>Exquisite Corpse</h1>
-        <Editor refreshCompletedPoems={this.refreshCompletedPoems}/>
-        <div>
-          Currently there are {this.state.uncompletedcount} open poems and {this.state.completedcount} completed poems.
-        </div>
+        <Editor
+          refreshCompletedPoems={this.refreshCompletedPoems}
+          refreshPoemCounts={this.refreshPoemCounts}
+          uncompletedcount={this.state.uncompletedcount}
+          completedcount={this.state.completedcount}
+        />
         <h4>What is this?</h4>
         <p>Collective, anonymous Internet poetry, written one line at a time.  Anybody can contribute a line, seeing only the one that came before.  Once a poem is long enough
         <OverlayTrigger
