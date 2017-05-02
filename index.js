@@ -1,7 +1,6 @@
 var express = require('express')
    ,app = express()
    ,bodyParser = require('body-parser')
-   ,cors = require('cors')
    ,port = process.env.PORT || 5000
 require('dotenv').config()
 
@@ -10,9 +9,9 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-app.use(cors())
-//Enable CORS for PUT (a non-standard verb)
-app.options('*', cors())
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 app.get('/favicon.ico', function(req, res) {
   res.send(null)

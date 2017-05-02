@@ -4,7 +4,10 @@
   "description": "Online surrealist poetry generator",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "start-server": "node index.js",
+    "start-client": "cd client && npm run start"
   },
   "repository": {
     "type": "git",
@@ -33,6 +36,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-json-schema": "^1.4.0",
+    "concurrently": "^3.4.0",
     "supertest": "^3.0.0"
   }
 }

@@ -1,0 +1,6 @@
+ul.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: spacing-around;
+  margin-bottom: 1em;
+}
