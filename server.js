@@ -26,6 +26,8 @@ app.get('/', function(req, res) {
 var poems = require('./routes/poems')
 app.use('/poems', poems)
 
+var counts = require('./routes/counts')
+app.use('/counts', counts)
 
 app.listen(port, function() {
   console.log('Server is running on port',port)
