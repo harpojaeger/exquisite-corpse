@@ -1,5 +1,10 @@
-input.editor {
-  width: calc(100% - 200px);
-  display:inline;
-  margin-right: 10px;
+form {
+  display: flex;
+  flex-direction: row;
+
+  button {
+    margin-left: 5px;
+    flex-shrink: 0;
+    align-self: flex-end;
+  }
 }

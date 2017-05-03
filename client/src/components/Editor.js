@@ -6,7 +6,7 @@ const entities = new Entities()
 var Loader = require('./Loader')
 var spinner = require('../../static/spinner.gif')
 require('../styles/Editor.css')
-import { Button, ButtonGroup, FormControl } from 'react-bootstrap'
+import { Button, FormControl } from 'react-bootstrap'
 
 function ordinal(n) {
     var s=["th","st","nd","rd"],
@@ -99,7 +99,6 @@ class Editor extends React.Component {
     var uncompletedcount = this.props.uncompletedcount
     var completedcount = this.props.completedcount
     var minlines = process.env.REACT_APP_MINLINES || 10
-    console.log('min',minlines,'lines')
     return(
       <div className='editor'>
         <div className={this.state.id ? '' : 'hidden'}>
@@ -119,25 +118,23 @@ class Editor extends React.Component {
               value={this.state.nextline}
               onChange={this.handleNextLineChange}
             />
-            <ButtonGroup>
-              <Button
-                type='submit'
-                name='action'
-                onClick={this.handleNextLineSubmit}
-                value='add'
-                disabled={this.state.promptloading}>
-                Add
-              </Button>
-              <Button
-                type='submit'
-                name='action'
-                onClick={this.handleNextLineSubmit}
-                value='end'
-                // Only display the end button if the poem is already at least x (default 10, dev 1) lines long and there are at least 11 open poems (i.e. don't let the number of open poems ever drop below 10).
-                disabled={this.state.promptloading || this.state.numlines < minlines || this.props.uncompletedcount < 10 }>
-                End
-              </Button>
-            </ButtonGroup>
+            <Button
+              type='submit'
+              name='action'
+              onClick={this.handleNextLineSubmit}
+              value='add'
+              disabled={this.state.promptloading}>
+              Add
+            </Button>
+            <Button
+              type='submit'
+              name='action'
+              onClick={this.handleNextLineSubmit}
+              value='end'
+              // Only display the end button if the poem is already at least x (default 10, dev 1) lines long and there are at least 11 open poems (i.e. don't let the number of open poems ever drop below 10).
+              disabled={this.state.promptloading || this.state.numlines < minlines || this.props.uncompletedcount < 10 }>
+              End
+            </Button>
           </form>
           (<a href='#' onClick={this.refreshPrompt}>get a different prompt</a>)
         </div>
