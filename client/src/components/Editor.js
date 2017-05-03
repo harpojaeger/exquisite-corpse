@@ -65,13 +65,16 @@ class Editor extends React.Component {
       e.target.value === 'end' && (completed = true)
       api.nextline(this.state.id, this.state.nextline, completed)
       .then(function(res) {
-        console.log(res)
+        // Store the id of the poem that was just finished
+        var finishedPoem = this.state.id
         this.refreshPrompt()
         this.props.refreshPoemCounts()
-        // Run the refreshCompletedPoems function we received as a prop from <App />
         if(completed) {
+          // Run the refreshCompletedPoems function we received as a prop from <App />
           this.props.refreshCompletedPoems()
-          document.getElementById(this.state.id).scrollIntoView()
+          .then( () => {
+            document.getElementById(finishedPoem).scrollIntoView()
+          })
         }
       }.bind(this))
     }

@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   refreshCompletedPoems() {
-    api.completed()
+    return api.completed()
       .then(function(poems) {
         this.setState({
           poems: poems
