@@ -67,12 +67,14 @@ class Editor extends React.Component {
       .then(function(res) {
         console.log(res)
         this.refreshPrompt()
-
+        this.props.refreshPoemCounts()
         // Run the refreshCompletedPoems function we received as a prop from <App />
-        if(completed) this.props.refreshCompletedPoems()
+        if(completed) {
+          this.props.refreshCompletedPoems()
+          document.getElementById(this.state.id).scrollIntoView()
+        }
       }.bind(this))
     }
-    this.props.refreshPoemCounts()
   }
 
   handleNewPoemSubmit(e) {
@@ -86,9 +88,9 @@ class Editor extends React.Component {
         this.setState({
           newline: ''
         })
+        this.props.refreshPoemCounts()
       }.bind(this))
     }
-    this.props.refreshPoemCounts()
   }
   render() {
     var uncompletedcount = this.props.uncompletedcount

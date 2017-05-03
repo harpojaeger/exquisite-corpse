@@ -9,7 +9,7 @@ import { Glyphicon } from 'react-bootstrap'
 function Timestamp(props) {
   return(
     <span className='timestamp'>
-      {dateFormat(new Date(props.children*1),"mmm. d, yyyy")}
+      {dateFormat(new Date(props.children*1),"mmm d, yyyy")}
     </span>
   )
 }
