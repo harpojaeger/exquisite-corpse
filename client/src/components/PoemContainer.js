@@ -16,7 +16,6 @@ class PoemContainer extends React.Component {
       poems: [],
     }
     this.loadMorePoems = this.loadMorePoems.bind(this)
-    this.loadUpToPoemById = this.loadUpToPoemById.bind(this)
   }
 
   loadMorePoems(){
@@ -27,17 +26,13 @@ class PoemContainer extends React.Component {
     })
   }
 
-  loadUpToPoemById(index, id){
-
-  }
-
   // Useing this listener to jump to the requested poem after a state change and then set autoscroll to false.  Otherwise, this would jump whenever the user loads new poems; obviously not what we want.
   componentDidUpdate() {
     if (this.state.autoscroll) {
       // var hash = window.location.href.split('#')[1]
       var targetPoem = document.getElementById(this.state.autoscroll)
       console.log(targetPoem)
-      document.body.scrollTop = targetPoem.offsetTop
+      if(targetPoem) document.body.scrollTop = targetPoem.offsetTop
       this.setState({ autoscroll: false })
     }
   }
@@ -48,15 +43,17 @@ class PoemContainer extends React.Component {
     })
     // Check to see if the page was loaded with the permalink of a poem that's outside current params.  If so, load up to it.
     var id = parseInt(window.location.href.split('#')[1], 10)
-    console.log('hash requests poem id',id  )
-    var index = 1 +  newprops.poems.findIndex(function(el) {
-      return el.id === id
-    })
-    console.log('poem',id,'has index',index)
-    this.setState({
-      to: Math.max(index, this.state.to),
-      autoscroll: id,
-    })
+    if(id) {
+      console.log('hash requests poem id',id  )
+      var index = 1 +  newprops.poems.findIndex(function(el) {
+        return el.id === id
+      })
+      console.log('poem',id,'has index',index)
+      this.setState({
+        to: Math.max(index, this.state.to),
+        autoscroll: id,
+      })
+    }
   }
 
   render() {
