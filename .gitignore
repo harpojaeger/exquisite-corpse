@@ -39,4 +39,4 @@ jspm_packages
 .env
 *.sql
 client/node_modules
-*.css
+client/src/styles/**
