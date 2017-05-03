@@ -15,14 +15,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-app.get('/favicon.ico', function(req, res) {
-  res.send(null)
-})
-
-app.get('/', function(req, res) {
-  res.send('Hello, world.')
-})
-
 var poems = require('./routes/poems')
 app.use('/poems', poems)
 

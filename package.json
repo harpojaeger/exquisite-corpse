@@ -9,7 +9,8 @@
     "start-server": "node server.js",
     "start-client": "cd client && npm run start",
     "build-css": "cd client && npm run build-css",
-    "watch-css": "cd client && npm run watch-css"
+    "watch-css": "cd client && npm run watch-css",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",

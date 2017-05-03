@@ -49,8 +49,9 @@ function countCompleted() {
   .then(function(res) {
     return res.data
   })
-  .catch( (e) => {
+  .catch( function(e) {
     console.error(e)
+    return e
   })
 }
 
@@ -59,8 +60,9 @@ function countUncompleted() {
   .then(function(res) {
     return res.data
   })
-  .catch( (e) => {
+  .catch( function(e) {
     console.error(e)
+    return e
   })
 }
 
