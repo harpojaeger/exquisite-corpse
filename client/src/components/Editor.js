@@ -98,7 +98,6 @@ class Editor extends React.Component {
   render() {
     var uncompletedcount = this.props.uncompletedcount
     var completedcount = this.props.completedcount
-    var minlines = process.env.REACT_APP_MINLINES || 10
     return(
       <div className='editor'>
         <div className={this.state.id ? '' : 'hidden'}>
@@ -132,7 +131,7 @@ class Editor extends React.Component {
               onClick={this.handleNextLineSubmit}
               value='end'
               // Only display the end button if the poem is already at least x (default 10, dev 1) lines long and there are at least 11 open poems (i.e. don't let the number of open poems ever drop below 10).
-              disabled={this.state.promptloading || this.state.numlines < minlines || this.props.uncompletedcount < 10 }>
+              disabled={this.state.promptloading || this.state.numlines < 10 || this.props.uncompletedcount < 10 }>
               End
             </Button>
           </form>
