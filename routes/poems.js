@@ -18,7 +18,8 @@ router.post('/', function(req, res) {
     res.sendStatus(500)
   })
   .then(function(victory) {
-    console.log(victory)
+    console.log('new', {line: req.body.line})
+    console.log('victory', victory)
     res.sendStatus(200)
   })
 })
@@ -29,7 +30,7 @@ router.put('/:id', function(req, res) {
   var endtime = null
   // Cast the current time to seconds
   if(completed) endtime = knex.raw('(extract(epoch from now()) * 1000)')
-  console.log(req.params.id, req.body, 'completed:', completed)
+  console.log(req.params.id, req.body)
   knex('poems')
   .update({
       lines: knex.raw('array_append(lines, ?)', req.body.line),
@@ -44,7 +45,7 @@ router.put('/:id', function(req, res) {
     res.sendStatus(500)
   })
   .then(function(victory) {
-    console.log(victory)
+    console.log('victory', victory)
     res.sendStatus(200)
   })
 })
