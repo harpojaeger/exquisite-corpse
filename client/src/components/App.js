@@ -62,14 +62,14 @@ class App extends React.Component {
           completedcount={this.state.completedcount}
         />
         <h4>What is this?</h4>
-        <p>Collective, anonymous Internet poetry, written one line at a time.  Anybody can contribute a line, seeing only the one that came before.  Once a poem is long enough
+        <p>Collective, anonymous Internet poetry, written one line at a time.  Anybody can contribute a line, seeing only the one that came before.  Once a poem is long enough,
         <OverlayTrigger
           overlay={longEnoughTooltip}
           placement='top'>
           <sup><Glyphicon glyph='question-sign' /></sup>
         </OverlayTrigger>
-        , you can also choose to end it, at which point the whole thing becomes public.</p>
-        <p>Exquisite Corpse began as a Surrealist parlor game in the early 20th century. I created this Internet version in 2009.</p>
+        &nbsp;you can also choose to end it, at which point the whole thing becomes public.</p>
+        <p>Exquisite Corpse began as a Surrealist parlor game in the early 20th century. <a href="http://harpojaeger.com">I</a> created this Internet version in 2008.  Read about its various incarnations (as it were) <a href="http://harpojaeger.com/2017/05/10/exquisite-corpse" target="_blank">here</a>, and find the tech specs/fine print <a href="https://github.com/harpojaeger/exquisite-corpse/blob/master/README.md">here</a>.</p>
         <PoemContainer poems={this.state.poems}/>
       </div>
     )

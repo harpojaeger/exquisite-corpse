@@ -96,6 +96,8 @@ class Editor extends React.Component {
     }
   }
   render() {
+    // Each time a new poem is displayed, choose a random minimum number of lines between 4 and 10.
+    var minlines = Math.floor(Math.random() * (10 - 4 + 1)) + 5
     var uncompletedcount = this.props.uncompletedcount
     var completedcount = this.props.completedcount
     return(
@@ -130,8 +132,8 @@ class Editor extends React.Component {
               name='action'
               onClick={this.handleNextLineSubmit}
               value='end'
-              // Only display the end button if the poem is already at least x (default 10, dev 1) lines long and there are at least 11 open poems (i.e. don't let the number of open poems ever drop below 10).
-              disabled={this.state.promptloading || this.state.numlines < 10 || this.props.uncompletedcount < 10 }>
+              // Only display the end button if the poem is already at least minlines lines long and there are at least 11 open poems.
+              disabled={this.state.promptloading || this.state.numlines < minlines || this.props.uncompletedcount < 10 }>
               End
             </Button>
           </form>
