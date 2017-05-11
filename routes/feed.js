@@ -8,7 +8,7 @@ const knex = require('knex')({
   connection: process.env.DATABASE_URL,
   searchPath: 'knex,public'
 })
-const port = process.env.port || 5000
+const port = process.env.PORT || 5000
 const NodeCache = require('node-cache')
 const rss_cache = new NodeCache()
 const axios = require('axios')
@@ -21,7 +21,9 @@ router.get('/completed', function(req,res) {
       rss_cache.get('poems', (err, value) => {
         if (!err) {
           if(value == undefined) {
-            axios.get('http://localhost:' + port + '/poems/completed')
+            var target = 'http://localhost:' + port + '/poems/completed'
+            console.log('GET',target)
+            axios.get(target)
             .then( (poems) => {
               rss_cache.set( 'poems', poems.data, 600, function( err, success ){
                 if( !err && success ){
