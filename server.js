@@ -21,6 +21,9 @@ app.use('/poems', poems)
 var counts = require('./routes/counts')
 app.use('/counts', counts)
 
+var feed = require('./routes/feed')
+app.use('/feed', feed)
+
 app.listen(port, function() {
   console.log('Server is running on port',port)
 })
