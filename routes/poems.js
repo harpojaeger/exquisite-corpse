@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 require('dotenv').config()
 var pg = require('pg')
-//pg.defaults.ssl = true
+if (process.env.NODE_ENV === 'production') pg.defaults.ssl = true
 var knex = require('knex')({
   client: 'pg',
   connection: process.env.DATABASE_URL,
