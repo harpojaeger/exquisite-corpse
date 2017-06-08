@@ -1,6 +1,7 @@
 # Exquisite Corpse
+<a href="http://exquisitecorpse.io/" target="_blank">exquisitecorpse.io</a>
 
-An online collective Surrealist poetry generator.  See this blog post for more info on the history of the game and of this Internet adaptation.
+An online collective Surrealist poetry generator.  See <a href="http://www.harpojaeger.com/2017/05/10/exquisite-corpse">this blog post</a> for more info on the history of the game and of this Internet adaptation.
 
 # Fine print/disclaimer
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br />All poems are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.  Anyone can contribute to exquisitecorpse.io.  I do my best to remove content that's blatantly inappropriate or obviously a violation of someone else's copyright.
