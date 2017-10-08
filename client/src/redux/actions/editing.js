@@ -25,6 +25,6 @@ export function newPoemCreated(status){
 export function newLineAdded(status){
   return { type: NEW_LINE_ADDED, status: status }
 }
-export function promptRefreshed(status, id, line){
-  return {type: PROMPT_REFRESHED, status: status, id: id, line: line }
+export function promptRefreshed(status, id, line, numlines){
+  return {type: PROMPT_REFRESHED, status: status, id: id, line: line, numlines: numlines }
 }
