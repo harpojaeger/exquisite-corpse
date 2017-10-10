@@ -1,8 +1,7 @@
 var React = require('react')
-var PoemList = require('./PoemList')
+const ConnectedPoemList = require('./PoemList')
 var Loader = require('./Loader')
 var PropTypes = require('prop-types')
-import { Button } from 'react-bootstrap'
 import '../styles/PoemContainer.css'
 import ConnectedLoadMoreButton from './LoadMoreButton.js'
 
@@ -62,7 +61,8 @@ class PoemContainer extends React.Component {
       <div className='poem-container'>
         <h3>Completed poems</h3>
         <Loader visible={ this.props.poems.length === 0 }>Loading...</Loader>
-        <PoemList poems={this.state.poems.slice(this.state.from,this.state.to)} />
+        <ConnectedPoemList />
+        {/* <PoemList poems={this.state.poems.slice(this.state.from,this.state.to)} /> */}
         <ConnectedLoadMoreButton />
       </div>
     )
