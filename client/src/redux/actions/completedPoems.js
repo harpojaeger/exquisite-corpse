@@ -18,3 +18,7 @@ export function fetchCompletedPoems(){
 export function receiveCompletedPoems(status, poems){
   return { type: RECEIVE_COMPLETED_POEMS, status: status, poems: poems}
 }
+
+export function displayMorePoems(){
+  return { type: DISPLAY_MORE_POEMS }
+}
