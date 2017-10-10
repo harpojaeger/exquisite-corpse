@@ -1,7 +1,7 @@
 var React = require('react')
 var PropTypes = require('prop-types')
 import '../styles/App.css'
-var PoemContainer = require('./PoemContainer')
+import ConnectedPoemContainer from './PoemContainer'
 var Editor = require('./Editor')
 var api = require('../../utils/api')
 import { Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap'
@@ -23,11 +23,10 @@ const store = createStore(
   )
 )
 
-store.dispatch(fetchCompletedPoems())
-
 class App extends React.Component {
   constructor(props) {
     super(props)
+    store.dispatch(fetchCompletedPoems())
     this.state = {
       poems: [],
       completedcount: 0,
@@ -39,7 +38,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    this.refreshCompletedPoems()
+    // this.refreshCompletedPoems()
     this.refreshPoemCounts()
   }
 
@@ -90,7 +89,7 @@ class App extends React.Component {
           &nbsp;you can also choose to end it, at which point the whole thing becomes public.</p>
           <p>Exquisite Corpse began as a Surrealist parlor game in the early 20th century. I created this Internet version in 2008.  Read about its various incarnations (as it were) <a href="http://harpojaeger.com/2017/05/10/exquisite-corpse" target="_blank">here</a>, and find the tech specs/fine print <a href="https://github.com/harpojaeger/exquisite-corpse/blob/master/README.md">here</a>.</p>
           <p>Made by <a href="http://harpojaeger.com">Harpo Jaeger</a>.</p>
-          <PoemContainer poems={this.state.poems}/>
+          <ConnectedPoemContainer/>
         </div>
       </Provider>
     )
