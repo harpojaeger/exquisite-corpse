@@ -1,3 +1,6 @@
+// Import action types
+import {FETCH_COMPLETED_POEMS, RECEIVE_COMPLETED_POEMS} from '../actions/completedPoems.js'
+
 const initialState = {
   ui: {
     // These two are UI state for the editor
@@ -12,6 +15,23 @@ const initialState = {
     // How many poems should be loaded the next time the 'load more' button is clicked?
     quantity: 50,
     // Slice the completed poem array from 0 to this number:
-    to: 50,
+    to: 50
+  },
+  data: {
+    poems: []
   }
 }
+
+function app(state = initialState, action) {
+  switch (action.type) {
+    case RECEIVE_COMPLETED_POEMS:
+      return Object.assign({}, state, {
+      poems: action.poems
+    })
+
+    default:
+      return state
+  }
+}
+
+export default app
