@@ -33,22 +33,11 @@ class App extends React.Component {
       uncompletedcount: 0,
     }
 
-    this.refreshCompletedPoems = this.refreshCompletedPoems.bind(this)
     this.refreshPoemCounts = this.refreshPoemCounts.bind(this)
   }
 
   componentDidMount () {
-    // this.refreshCompletedPoems()
     this.refreshPoemCounts()
-  }
-
-  refreshCompletedPoems() {
-    return api.completed()
-      .then(function(poems) {
-        this.setState({
-          poems: poems
-        })
-      }.bind(this))
   }
 
   refreshPoemCounts() {
