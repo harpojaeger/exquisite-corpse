@@ -1,5 +1,6 @@
 // Import action types
 import { RECEIVE_COMPLETED_POEMS, DISPLAY_MORE_POEMS } from '../actions/completedPoems.js'
+import { UPDATE_UNCOMPLETED_COUNT, UPDATE_COMPLETED_COUNT } from '../actions/poemCounts.js'
 
 const initialState = {
   // These two are UI state for the editor
@@ -15,7 +16,7 @@ const initialState = {
   quantity: 50,
   // Slice the completed poem array from 0 to this number:
   to: 50,
-  poems: []
+  poems: [],
 }
 
 function app(state = initialState, action) {
@@ -29,6 +30,14 @@ function app(state = initialState, action) {
         to: state.to + state.quantity,
         quantity: Math.min(state.quantity, state.poems.length - state.to - state.quantity),
         displayLoadMore: ((state.to + state.quantity) < state.poems.length)
+      })
+    case UPDATE_UNCOMPLETED_COUNT:
+      return Object.assign({}, state, {
+        uncompleted: action.uncompleted
+      })
+    case UPDATE_COMPLETED_COUNT:
+      return Object.assign({}, state, {
+        completed: action.completed
       })
 
     default:

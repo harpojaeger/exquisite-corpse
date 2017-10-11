@@ -9,6 +9,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
 import { fetchCompletedPoems } from '../redux/actions/completedPoems.js'
+import { refreshPoemCounts } from '../redux/actions/poemCounts.js'
 import rootReducer from '../redux/reducers/reducers.js'
 import { Provider } from 'react-redux'
 
@@ -27,6 +28,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     store.dispatch(fetchCompletedPoems())
+    store.dispatch(refreshPoemCounts())
     this.state = {
       poems: [],
       completedcount: 0,
