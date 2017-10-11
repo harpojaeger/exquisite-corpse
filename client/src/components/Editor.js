@@ -7,6 +7,8 @@ var Loader = require('./Loader')
 var spinner = require('../../static/spinner.gif')
 require('../styles/Editor.css')
 import { Button, FormControl } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { refreshPoemCounts } from '../redux/actions/poemCounts.js'
 
 function ordinal(n) {
     var s=["th","st","nd","rd"],
@@ -172,4 +174,22 @@ Editor.propTypes = {
   uncompletedcount: PropTypes.number.isRequired,
 }
 
-module.exports = Editor
+const mapStateToProps = state => {
+  return {
+    completedcount: state.completed,
+    uncompletedcount: state.uncompleted,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    refreshCompletedPoems: () => dispatch(refreshPoemCounts())
+  }
+}
+
+const ConnectedEditor = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Editor)
+
+module.exports = ConnectedEditor

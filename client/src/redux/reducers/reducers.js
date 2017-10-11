@@ -17,6 +17,8 @@ const initialState = {
   // Slice the completed poem array from 0 to this number:
   to: 50,
   poems: [],
+  completed: 0,
+  uncompleted: 0,
 }
 
 function app(state = initialState, action) {

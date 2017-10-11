@@ -2,7 +2,7 @@ var React = require('react')
 var PropTypes = require('prop-types')
 import '../styles/App.css'
 import ConnectedPoemContainer from './PoemContainer'
-var Editor = require('./Editor')
+var ConnectedEditor = require('./Editor')
 var api = require('../../utils/api')
 import { Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import thunkMiddleware from 'redux-thunk'
@@ -64,12 +64,7 @@ class App extends React.Component {
       <Provider store={store}>
         <div className='app'>
           <h1>Exquisite Corpse</h1>
-          <Editor
-            refreshCompletedPoems={this.refreshCompletedPoems}
-            refreshPoemCounts={this.refreshPoemCounts}
-            uncompletedcount={this.state.uncompletedcount}
-            completedcount={this.state.completedcount}
-          />
+          <ConnectedEditor />
           <h4>What is this?</h4>
           <p>Collective, anonymous Internet poetry, written one line at a time.  Anybody can contribute a line, seeing only the one that came before.  Once a poem is long enough,
             <OverlayTrigger
