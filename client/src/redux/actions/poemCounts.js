@@ -2,7 +2,6 @@ import api from '../../../utils/api.js'
 export const UPDATE_COMPLETED_COUNT = 'UPDATE_COMPLETED_COUNT'
 export const UPDATE_UNCOMPLETED_COUNT = 'UPDATE_UNCOMPLETED_COUNT'
 
-
 export function refreshUncompletedCount(){
   return dispatch =>
     api.countUncompleted()

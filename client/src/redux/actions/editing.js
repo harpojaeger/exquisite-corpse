@@ -4,9 +4,7 @@ import { fetchCompletedPoems } from './completedPoems'
 
 export const FETCH_NEW_PROMPT = 'FETCH_NEW_PROMPT'
 export const PROMPT_REFRESHED = 'PROMPT_REFRESHED'
-
 export const NEW_POEM_CREATED = 'NEW_POEM_CREATED'
-
 export const NEW_LINE_ADDED = 'NEW_LINE_ADDED'
 
 
