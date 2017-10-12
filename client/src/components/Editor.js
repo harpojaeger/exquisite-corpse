@@ -23,14 +23,12 @@ class Editor extends React.Component {
   //   this.refreshPrompt()
   // }
   render() {
-    var uncompletedcount = this.props.uncompletedcount
-    var completedcount = this.props.completedcount
     return(
       <div className='editor'>
         {this.props.id && <ConnectedNewLine />}
         <ConnectedNewPoem />
         <div>
-          Currently there {uncompletedcount === 1 ? 'is' : 'are'} {uncompletedcount} open poem{uncompletedcount !== 1 && 's'} and {completedcount} completed poems.
+          Currently there {this.props.uncompleted === 1 ? 'is' : 'are'} {this.props.uncompleted} open poem{this.props.uncompleted !== 1 && 's'} and {this.props.completed} completed poems.
         </div>
       </div>
     )
@@ -40,15 +38,15 @@ class Editor extends React.Component {
 Editor.propTypes = {
   refreshCompletedPoems: PropTypes.func.isRequired,
   refreshPrompt: PropTypes.func.isRequired,
-  completedcount: PropTypes.number.isRequired,
-  uncompletedcount: PropTypes.number.isRequired,
+  completed: PropTypes.number.isRequired,
+  uncompleted: PropTypes.number.isRequired,
   id: PropTypes.number,
 }
 
 const mapStateToProps = state => {
   return {
-    completedcount: state.completed,
-    uncompletedcount: state.uncompleted,
+    completed: state.completed,
+    uncompleted: state.uncompleted,
     id: state.id,
   }
 }
