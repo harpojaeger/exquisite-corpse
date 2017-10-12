@@ -1,5 +1,6 @@
 const api = require('../../../utils/api')
 import { refreshPoemCounts } from './poemCounts'
+import { fetchCompletedPoems } from './completedPoems'
 
 export const FETCH_NEW_PROMPT = 'FETCH_NEW_PROMPT'
 export const PROMPT_REFRESHED = 'PROMPT_REFRESHED'
@@ -37,9 +38,25 @@ export function createNewPoem(line){
     })
   }
 }
-
 export function newPoemCreated(status){
   return { type: NEW_POEM_CREATED, status: status }
+}
+
+// Action creators to add a new line to an existing poem
+export function addNewLine(id, line, completed){
+  return function(dispatch) {
+    api.nextline(id, line, completed)
+    .then(function(res) {
+      dispatch(requestPromptRefresh())
+      dispatch(newLineAdded('VICTORY'))
+      if(completed) {
+        dispatch(refreshPoemCounts())
+        dispatch(fetchCompletedPoems())
+        // Todo: build a scroller action to show the just-finished poem
+      }
+
+    })
+  }
 }
 export function newLineAdded(status){
   return { type: NEW_LINE_ADDED, status: status }

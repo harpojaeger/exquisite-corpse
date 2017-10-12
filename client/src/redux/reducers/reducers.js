@@ -4,11 +4,8 @@ import { UPDATE_UNCOMPLETED_COUNT, UPDATE_COMPLETED_COUNT } from '../actions/poe
 import { FETCH_NEW_PROMPT, PROMPT_REFRESHED, NEW_POEM_CREATED } from '../actions/editing.js'
 
 const initialState = {
-  // These two are UI state for the editor
   // Is the poem prompt loading?
   promptloading: true,
-  // Is the current poem long enough to be ended?
-  endable: false,
 
   //This is UI state for the completed poem listing
   // Should the 'load more' button be displayed?
@@ -18,6 +15,8 @@ const initialState = {
   // Slice the completed poem array from 0 to this number:
   to: 50,
   poems: [],
+
+  // Current number of completed & uncompleted poems
   completed: 0,
   uncompleted: 0,
 }

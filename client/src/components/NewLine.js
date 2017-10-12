@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 const spinner = require('../../static/spinner.gif')
-var api = require('../../utils/api')
 const Entities = require('html-entities').AllHtmlEntities
 const entities = new Entities()
 const Loader = require('./Loader')
 import { Button, FormControl } from 'react-bootstrap'
-import { requestPromptRefresh } from '../redux/actions/editing.js'
+import { requestPromptRefresh, addNewLine } from '../redux/actions/editing.js'
 
 function ordinal(n) {
   var s=["th","st","nd","rd"],
@@ -33,40 +32,14 @@ class NewLine extends Component {
   handleNextLineSubmit(e) {
     e.preventDefault()
     if(this.state.nextline) {
-      console.log(e.target.value,this.state.nextline,this.state.id)
+      // console.log(e.target.value,this.state.nextline,this.state.id)
       var completed = false
       // Do the updating actions
       e.target.value === 'end' && (completed = true)
-      api.nextline(this.state.id, this.state.nextline, completed)
-      .then(function(res) {
-        // Store the id of the poem that was just finished
-        var finishedPoem = this.state.id
-        this.refreshPrompt()
-        this.props.refreshPoemCounts()
-        if(completed) {
-          // Run the refreshCompletedPoems function we received as a prop from <App />
-          this.props.refreshCompletedPoems()
-          .then( () => {
-            document.getElementById(finishedPoem).scrollIntoView()
-          })
-        }
-      }.bind(this))
+      this.props.submitNewLine(this.props.id, this.state.nextline, completed)
+      this.setState( { nextline: '' })
     }
   }
-
-  // refreshPrompt() {
-  //   this.setState({promptloading:true})
-  //   api.random()
-  //   .then(function(poem) {
-  //     this.setState({
-  //       id: poem.id,
-  //       numlines: poem.lines.length,
-  //       prompt: poem.lines[poem.lines.length-1],
-  //       promptloading:false,
-  //       nextline: ''
-  //     })
-  //   }.bind(this))
-  // }
 
   render() {
     // Each time a new poem is displayed, choose a random minimum number of lines between 4 and 10.
@@ -120,6 +93,7 @@ NewLine.propTypes = {
   prompt: PropTypes.string.isRequired,
   uncompletedcount: PropTypes.number.isRequired,
   refreshPrompt: PropTypes.func.isRequired,
+  submitNewLine: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -134,7 +108,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    refreshPrompt: () => dispatch(requestPromptRefresh())
+    refreshPrompt: () => dispatch(requestPromptRefresh()),
+    submitNewLine: (id, line, completed) => dispatch(addNewLine(id, line, completed))
   }
 }
 
