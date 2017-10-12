@@ -1,10 +1,11 @@
-var React = require('react')
-var PropTypes = require('prop-types')
-var dateFormat = require('dateformat')
+import React from 'react'
+import PropTypes from 'prop-types'
+import dateFormat from 'dateformat'
+import { Glyphicon } from 'react-bootstrap'
+import { connect } from 'react-redux'
 const Entities = require('html-entities').AllHtmlEntities
 const entities = new Entities()
 import '../styles/PoemList.css'
-import { Glyphicon } from 'react-bootstrap'
 
 function Timestamp(props) {
   return(
@@ -67,4 +68,14 @@ PoemList.propTypes = {
   poems: PropTypes.array.isRequired,
 }
 
-module.exports = PoemList
+const mapStateToProps = state => {
+  return {
+    poems: state.poems.slice(0, state.to)
+  }
+}
+
+const ConnectedPoemList = connect(
+  mapStateToProps
+)(PoemList)
+
+module.exports = ConnectedPoemList

@@ -1,5 +1,5 @@
-var React = require('react')
-var PropTypes = require('prop-types')
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function Loader(props) {
   return (
