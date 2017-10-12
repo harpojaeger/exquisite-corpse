@@ -8,7 +8,7 @@ function PoemList(props) {
   return(
     <ul className='no-bullets no-padding poem-list'>
       {props.poems.map( (poem) =>
-        <li id={poem.id} key={poem.id} className='poem'>
+        <li key={poem.id} className='poem'>
           <Poem key={poem.id} id={poem.id} starttime={poem.starttime} endtime={poem.endtime} lines={poem.lines}
           />
         </li>
