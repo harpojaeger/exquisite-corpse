@@ -1,12 +1,11 @@
 var React = require('react')
 var PropTypes = require('prop-types')
-var api = require('../../utils/api')
 require('../styles/Editor.css')
-import { Button, FormControl } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { refreshPoemCounts } from '../redux/actions/poemCounts.js'
 import { requestPromptRefresh } from '../redux/actions/editing.js'
-import NewLine from './NewLine'
+import ConnectedNewLine from './NewLine'
+import ConnectedNewPoem from './NewPoem'
 
 class Editor extends React.Component {
   constructor(props) {
@@ -19,58 +18,17 @@ class Editor extends React.Component {
       numlines: null,
       promptloading: true,
     }
-
-    this.handleNewPoemChange = this.handleNewPoemChange.bind(this)
-    this.handleNewPoemSubmit = this.handleNewPoemSubmit.bind(this)
   }
   // componentDidMount() {
   //   this.refreshPrompt()
   // }
-
-  handleNewPoemChange(event) {
-    this.setState({newline: event.target.value})
-  }
-
-  handleNewPoemSubmit(e) {
-    e.preventDefault()
-    if(this.state.newline) {
-      var action = e.target
-      console.log(action)
-      api.newpoem(this.state.newline)
-      .then(function(res) {
-        console.log(res)
-        this.setState({
-          newline: ''
-        })
-        this.props.refreshPoemCounts()
-      }.bind(this))
-    }
-  }
   render() {
     var uncompletedcount = this.props.uncompletedcount
     var completedcount = this.props.completedcount
     return(
       <div className='editor'>
-        {this.props.id && <NewLine />}
-        <div>
-          <div>
-            {this.state.id ? 'or s' : 'S'}tart a new poem:
-          </div>
-          <form action='#' onSubmit={this.handleNewPoemSubmit}>
-            <FormControl
-              type='text'
-              className='editor'
-              value={this.state.newline}
-              onChange={this.handleNewPoemChange}
-            />
-            <Button
-              type='submit'
-              name='action'
-              value='start'>
-              Start
-            </Button>
-          </form>
-        </div>
+        {this.props.id && <ConnectedNewLine />}
+        <ConnectedNewPoem />
         <div>
           Currently there {uncompletedcount === 1 ? 'is' : 'are'} {uncompletedcount} open poem{uncompletedcount !== 1 && 's'} and {completedcount} completed poems.
         </div>

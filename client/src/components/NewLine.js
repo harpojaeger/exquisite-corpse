@@ -18,7 +18,9 @@ function ordinal(n) {
 class NewLine extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      nextline: ''
+    }
     this.handleNextLineChange = this.handleNextLineChange.bind(this)
     this.handleNextLineSubmit = this.handleNextLineSubmit.bind(this)
     // this.refreshPrompt = this.refreshPrompt.bind(this)
