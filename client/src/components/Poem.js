@@ -21,9 +21,6 @@ function Poem(props) {
         <a href={'#'+props.id} className='hover-link'>
           <Glyphicon glyph='link' />
         </a>
-        {/* <a className='hover-link' href='#top'>
-          <Glyphicon glyph='circle-arrow-up' />
-        </a> */}
       </div>
       {props.lines.map( (line, index) =>
         <p className='line' key={index}>{entities.decode(line)}</p>
