@@ -15,10 +15,10 @@ class ModalPoem extends Component{
     this.setState( { showModal: true} )
   }
   close() {
-    this.setState({ showModal: false });
+    this.setState({ showModal: false }, () => setTimeout(()=>this.props.history.push(''), 150))
+
   }
   render(){
-    console.log('ModalPoem received props', this.props)
     return(
       <Modal show={this.state.showModal} onHide={this.close}>
         <Poem id={this.props.poem.id} starttime={this.props.poem.starttime} endtime={this.props.poem.endtime} lines={this.props.poem.lines} />
@@ -35,6 +35,7 @@ ModalPoem.propTypes = {
 }
 
 const ModalPoemContainer = (props) => {
+  console.log('ModalPoemContainer received props', props)
   if(props.poems) {
     var thispoem = props.poems.find( (poem) => poem.id === props.id )
   }
@@ -42,7 +43,7 @@ const ModalPoemContainer = (props) => {
   return(
     <div>
       {(typeof thispoem !== 'undefined') &&
-        <ModalPoem poem={thispoem}/>}
+        <ModalPoem poem={thispoem} history={props.history}/>}
     </div>
   )
 }
