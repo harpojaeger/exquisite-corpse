@@ -1,10 +1,10 @@
-var React = require('react')
-const ConnectedPoemList = require('./PoemList')
-var Loader = require('./Loader')
-var PropTypes = require('prop-types')
-import '../styles/PoemContainer.css'
-import ConnectedLoadMoreButton from './LoadMoreButton.js'
+import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import ConnectedPoemList from './PoemList'
+import Loader from './Loader'
+import ConnectedLoadMoreButton from './LoadMoreButton.js'
+import '../styles/PoemContainer.css'
 
 function PoemContainer(props) {
   return (

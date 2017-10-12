@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-const spinner = require('../../static/spinner.gif')
+import { Button, FormControl } from 'react-bootstrap'
+import spinner from '../../static/spinner.gif'
 const Entities = require('html-entities').AllHtmlEntities
 const entities = new Entities()
-const Loader = require('./Loader')
-import { Button, FormControl } from 'react-bootstrap'
+import Loader from './Loader'
 import { requestPromptRefresh, addNewLine } from '../redux/actions/editing.js'
 
 function ordinal(n) {

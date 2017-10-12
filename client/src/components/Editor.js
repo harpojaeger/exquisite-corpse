@@ -1,13 +1,13 @@
-var React = require('react')
-var PropTypes = require('prop-types')
-require('../styles/Editor.css')
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import '../styles/Editor.css'
 import { refreshPoemCounts } from '../redux/actions/poemCounts.js'
 import { requestPromptRefresh } from '../redux/actions/editing.js'
 import ConnectedNewLine from './NewLine'
 import ConnectedNewPoem from './NewPoem'
 
-class Editor extends React.Component {
+class Editor extends Component {
   constructor(props) {
     super(props)
     this.state = {

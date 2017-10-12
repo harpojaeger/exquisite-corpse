@@ -1,18 +1,17 @@
-var React = require('react')
-var PropTypes = require('prop-types')
-import '../styles/App.css'
-import ConnectedPoemContainer from './PoemContainer'
-var ConnectedEditor = require('./Editor')
-var api = require('../../utils/api')
-import { Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import { Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import '../styles/App.css'
+import ConnectedPoemContainer from './PoemContainer'
+import ConnectedEditor from './Editor'
 import { fetchCompletedPoems } from '../redux/actions/completedPoems.js'
 import { refreshPoemCounts } from '../redux/actions/poemCounts.js'
 import { requestPromptRefresh } from '../redux/actions/editing.js'
 import rootReducer from '../redux/reducers/reducers.js'
-import { Provider } from 'react-redux'
 
 const loggerMiddleware = createLogger()
 
@@ -25,39 +24,11 @@ const store = createStore(
   )
 )
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
+class App extends Component {
+  componentDidMount () {
     store.dispatch(fetchCompletedPoems())
     store.dispatch(refreshPoemCounts())
     store.dispatch(requestPromptRefresh())
-    this.state = {
-      poems: [],
-      completedcount: 0,
-      uncompletedcount: 0,
-    }
-
-    this.refreshPoemCounts = this.refreshPoemCounts.bind(this)
-  }
-
-  componentDidMount () {
-    this.refreshPoemCounts()
-  }
-
-  refreshPoemCounts() {
-    api.countCompleted()
-    .then( (count) => {
-      this.setState({
-        completedcount: count
-      })
-    })
-
-    api.countUncompleted()
-    .then( (count) => {
-      this.setState({
-        uncompletedcount: count
-      })
-    })
   }
 
   render() {
