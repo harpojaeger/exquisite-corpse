@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-const api = require('../../utils/api')
 import { Button, FormControl } from 'react-bootstrap'
+import { createNewPoem } from '../redux/actions/editing.js'
 
 class NewPoem extends Component {
   constructor(props){
@@ -23,14 +23,10 @@ class NewPoem extends Component {
     if(this.state.newline) {
       var action = e.target
       console.log(action)
-      api.newpoem(this.state.newline)
-      .then(function(res) {
-        console.log(res)
-        this.setState({
-          newline: ''
-        })
-        this.props.refreshPoemCounts()
-      }.bind(this))
+      this.props.createNewPoem(this.state.newline)
+      this.setState({
+        newline: ''
+      })
     }
   }
 
@@ -60,7 +56,8 @@ class NewPoem extends Component {
 }
 
 NewPoem.propTypes = {
-  id: PropTypes.number
+  id: PropTypes.number,
+  createNewPoem: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -69,8 +66,15 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    createNewPoem: (line) => dispatch(createNewPoem(line))
+  }
+}
+
 const ConnectedNewPoem = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(NewPoem)
 
 export default ConnectedNewPoem

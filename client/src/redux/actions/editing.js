@@ -1,44 +1,41 @@
 const api = require('../../../utils/api')
+import { refreshPoemCounts } from './poemCounts'
 
-// These actions will be triggered by the user through UI interactions.
-export const SUBMIT_NEW_POEM = 'SUBMIT_NEW_POEM'
-export const SUBMIT_NEW_LINE = 'SUBMIT_NEW_LINE'
-
-// Intermediate actions to update state
 export const FETCH_NEW_PROMPT = 'FETCH_NEW_PROMPT'
-
-// These will be triggered by the app when an API request returns, in order to update the application state.
-export const NEW_POEM_CREATED = 'NEW_POEM_CREATED'
-export const NEW_LINE_ADDED = 'NEW_LINE_ADDED'
 export const PROMPT_REFRESHED = 'PROMPT_REFRESHED'
 
-// Action creators
-export function submitNewPoem(line){
-  return { type: SUBMIT_NEW_POEM, line: line }
-}
-export function submitNewLine(id, line){
-  return { type: SUBMIT_NEW_LINE, id: id, line: line }
-}
+export const NEW_POEM_CREATED = 'NEW_POEM_CREATED'
+
+export const NEW_LINE_ADDED = 'NEW_LINE_ADDED'
+
+
+// Action creators to refresh the prompt
 export function requestPromptRefresh(){
   return function(dispatch) {
     dispatch(fetchNewPrompt())
     api.random()
     .then(function(poem) {
       dispatch(promptRefreshed('VICTORY', poem.id, poem.lines[poem.lines.length-1], poem.lines.length))
-    //   this.setState({
-    //     id: poem.id,
-    //     numlines: poem.lines.length,
-    //     prompt: poem.lines[poem.lines.length-1],
-    //     promptloading:false,
-    //     nextline: ''
-    //   })
-    // }.bind(this))
     })
   }
 }
-
 export function fetchNewPrompt(){
   return { type: FETCH_NEW_PROMPT }
+}
+export function promptRefreshed(status, id, line, numlines){
+  return {type: PROMPT_REFRESHED, status: status, id: id, line: line, numlines: numlines }
+}
+
+// Action creators to create a new poem
+export function createNewPoem(line){
+  return function(dispatch) {
+    api.newpoem(line)
+    .then(function(res) {
+      console.log(res)
+      dispatch(newPoemCreated('VICTORY'))
+      dispatch(refreshPoemCounts())
+    })
+  }
 }
 
 export function newPoemCreated(status){
@@ -46,7 +43,4 @@ export function newPoemCreated(status){
 }
 export function newLineAdded(status){
   return { type: NEW_LINE_ADDED, status: status }
-}
-export function promptRefreshed(status, id, line, numlines){
-  return {type: PROMPT_REFRESHED, status: status, id: id, line: line, numlines: numlines }
 }
