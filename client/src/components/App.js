@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
@@ -53,10 +52,6 @@ class App extends Component {
       </Provider>
     )
   }
-}
-
-App.propTypes = {
-  poems: PropTypes.array,
 }
 
 module.exports = App
