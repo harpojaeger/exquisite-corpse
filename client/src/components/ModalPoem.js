@@ -18,12 +18,10 @@ class ModalPoem extends Component{
     this.setState({ showModal: false });
   }
   render(){
-    let thispoem = this.props.poems.find( (poem) => poem.id === this.props.id )
-    console.log('thispoem is',thispoem)
     console.log('ModalPoem received props', this.props)
     return(
       <Modal show={this.state.showModal} onHide={this.close}>
-        <Poem id={thispoem.id} starttime={thispoem.starttime} endtime={thispoem.endtime} lines={thispoem.lines} />
+        <Poem id={this.props.poem.id} starttime={this.props.poem.starttime} endtime={this.props.poem.endtime} lines={this.props.poem.lines} />
         <Modal.Footer>
           <Button onClick={this.close}>Close</Button>
         </Modal.Footer>
@@ -33,15 +31,18 @@ class ModalPoem extends Component{
 }
 
 ModalPoem.propTypes = {
-  id: PropTypes.number.isRequired,
-  poems: PropTypes.array.isRequired,
+  poem: PropTypes.object.isRequired
 }
 
 const ModalPoemContainer = (props) => {
+  if(props.poems) {
+    var thispoem = props.poems.find( (poem) => poem.id === props.id )
+  }
+  console.log('thispoem is',thispoem)
   return(
     <div>
-      {props.poems.length>1 &&
-        <ModalPoem id={props.id} poems={props.poems}/>}
+      {(typeof thispoem !== 'undefined') &&
+        <ModalPoem poem={thispoem}/>}
     </div>
   )
 }
