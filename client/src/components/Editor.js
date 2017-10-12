@@ -9,6 +9,7 @@ require('../styles/Editor.css')
 import { Button, FormControl } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { refreshPoemCounts } from '../redux/actions/poemCounts.js'
+import { requestPromptRefresh } from '../redux/actions/editing.js'
 
 function ordinal(n) {
     var s=["th","st","nd","rd"],
@@ -139,7 +140,7 @@ class Editor extends React.Component {
               End
             </Button>
           </form>
-          (<a href='#' onClick={this.refreshPrompt}>get a different prompt</a>)
+          (<a href='#' onClick={this.props.refreshPrompt}>get a different prompt</a>)
         </div>
         <div>
           <div>
@@ -170,6 +171,7 @@ class Editor extends React.Component {
 
 Editor.propTypes = {
   refreshCompletedPoems: PropTypes.func.isRequired,
+  refreshPrompt: PropTypes.func.isRequired,
   completedcount: PropTypes.number.isRequired,
   uncompletedcount: PropTypes.number.isRequired,
 }
@@ -183,7 +185,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    refreshCompletedPoems: () => dispatch(refreshPoemCounts())
+    refreshCompletedPoems: () => dispatch(refreshPoemCounts()),
+    refreshPrompt: () => dispatch(requestPromptRefresh()),
   }
 }
 

@@ -10,6 +10,7 @@ import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
 import { fetchCompletedPoems } from '../redux/actions/completedPoems.js'
 import { refreshPoemCounts } from '../redux/actions/poemCounts.js'
+import { requestPromptRefresh } from '../redux/actions/editing.js'
 import rootReducer from '../redux/reducers/reducers.js'
 import { Provider } from 'react-redux'
 
@@ -29,6 +30,7 @@ class App extends React.Component {
     super(props)
     store.dispatch(fetchCompletedPoems())
     store.dispatch(refreshPoemCounts())
+    store.dispatch(requestPromptRefresh())
     this.state = {
       poems: [],
       completedcount: 0,

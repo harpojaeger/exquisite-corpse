@@ -1,6 +1,7 @@
 // Import action types
 import { RECEIVE_COMPLETED_POEMS, DISPLAY_MORE_POEMS } from '../actions/completedPoems.js'
 import { UPDATE_UNCOMPLETED_COUNT, UPDATE_COMPLETED_COUNT } from '../actions/poemCounts.js'
+import { FETCH_NEW_PROMPT, PROMPT_REFRESHED } from '../actions/editing.js'
 
 const initialState = {
   // These two are UI state for the editor
@@ -40,6 +41,17 @@ function app(state = initialState, action) {
     case UPDATE_COMPLETED_COUNT:
       return Object.assign({}, state, {
         completed: action.completed
+      })
+    case FETCH_NEW_PROMPT:
+      return Object.assign({}, state, {
+        promptloading: true
+      })
+    case PROMPT_REFRESHED:
+      return Object.assign({}, state, {
+        promptloading: false,
+        id: action.id,
+        nextline: action.line,
+        numlines: action.numlines,
       })
 
     default:

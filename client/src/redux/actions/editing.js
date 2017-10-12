@@ -1,7 +1,11 @@
+const api = require('../../../utils/api')
+
 // These actions will be triggered by the user through UI interactions.
 export const SUBMIT_NEW_POEM = 'SUBMIT_NEW_POEM'
 export const SUBMIT_NEW_LINE = 'SUBMIT_NEW_LINE'
-export const REQUEST_PROMPT_REFRESH = 'REQUEST_PROMPT_REFRESH'
+
+// Intermediate actions to update state
+export const FETCH_NEW_PROMPT = 'FETCH_NEW_PROMPT'
 
 // These will be triggered by the app when an API request returns, in order to update the application state.
 export const NEW_POEM_CREATED = 'NEW_POEM_CREATED'
@@ -13,10 +17,28 @@ export function submitNewPoem(line){
   return { type: SUBMIT_NEW_POEM, line: line }
 }
 export function submitNewLine(id, line){
-  return{ type: SUBMIT_NEW_LINE, id: id, line: line }
+  return { type: SUBMIT_NEW_LINE, id: id, line: line }
 }
 export function requestPromptRefresh(){
-  return { type: REQUEST_PROMPT_REFRESH }
+  return function(dispatch) {
+    dispatch(fetchNewPrompt())
+    api.random()
+    .then(function(poem) {
+      dispatch(promptRefreshed('VICTORY', poem.id, poem.lines[poem.lines.length-1], poem.lines.length))
+    //   this.setState({
+    //     id: poem.id,
+    //     numlines: poem.lines.length,
+    //     prompt: poem.lines[poem.lines.length-1],
+    //     promptloading:false,
+    //     nextline: ''
+    //   })
+    // }.bind(this))
+    })
+  }
+}
+
+export function fetchNewPrompt(){
+  return { type: FETCH_NEW_PROMPT }
 }
 
 export function newPoemCreated(status){
