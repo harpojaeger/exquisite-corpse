@@ -22,7 +22,6 @@ class NewLine extends Component {
     }
     this.handleNextLineChange = this.handleNextLineChange.bind(this)
     this.handleNextLineSubmit = this.handleNextLineSubmit.bind(this)
-    // this.refreshPrompt = this.refreshPrompt.bind(this)
   }
 
   handleNextLineChange(event) {
@@ -32,9 +31,7 @@ class NewLine extends Component {
   handleNextLineSubmit(e) {
     e.preventDefault()
     if(this.state.nextline) {
-      // console.log(e.target.value,this.state.nextline,this.state.id)
       var completed = false
-      // Do the updating actions
       e.target.value === 'end' && (completed = true)
       this.props.submitNewLine(this.props.id, this.state.nextline, completed)
       this.setState( { nextline: '' })

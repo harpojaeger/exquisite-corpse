@@ -13,7 +13,6 @@ const LoadMoreButton = (props) => {
       className={ 'load-more ' + (props.hidden && 'hidden') }
     >
       Load {props.num} more poem{ props.num > 1 && 's' }
-      {/* {this.state.nextids.first} - {this.state.nextids.last} */}
     </Button>
   )
 }

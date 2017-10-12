@@ -19,9 +19,6 @@ class Editor extends React.Component {
       promptloading: true,
     }
   }
-  // componentDidMount() {
-  //   this.refreshPrompt()
-  // }
   render() {
     return(
       <div className='editor'>
