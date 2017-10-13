@@ -18,9 +18,11 @@ function Poem(props) {
           <span> – <Timestamp>{props.endtime}</Timestamp></span>
         }
         {props.starttime && ')'}
-        <a href={'#'+props.id} className='hover-link'>
-          <Glyphicon glyph='link' />
-        </a>
+        { props.showSelfLink &&
+          <a href={'#'+props.id} className='hover-link'>
+            <Glyphicon glyph='link' />
+          </a>
+        }
       </div>
       {props.lines.map( (line, index) =>
         <p className='line' key={index}>{entities.decode(line)}</p>
@@ -33,11 +35,13 @@ Poem.propTypes = {
   starttime: PropTypes.string,
   endtime: PropTypes.string,
   lines: PropTypes.array.isRequired,
+  showSelfLink: PropTypes.bool.isRequired,
 }
 
 Poem.defaultProps = {
   starttime: '',
   endtime: '',
+  showSelfLink: true,
 }
 
 function Timestamp(props) {

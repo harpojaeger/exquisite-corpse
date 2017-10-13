@@ -16,12 +16,11 @@ class ModalPoem extends Component{
   }
   close() {
     this.setState({ showModal: false }, () => setTimeout(()=>this.props.history.push(''), 150))
-
   }
   render(){
     return(
       <Modal show={this.state.showModal} onHide={this.close}>
-        <Poem id={this.props.poem.id} starttime={this.props.poem.starttime} endtime={this.props.poem.endtime} lines={this.props.poem.lines} />
+        <Poem id={this.props.poem.id} starttime={this.props.poem.starttime} endtime={this.props.poem.endtime} lines={this.props.poem.lines} showSelfLink={false}/>
         <Modal.Footer>
           <Button onClick={this.close}>Close</Button>
         </Modal.Footer>
