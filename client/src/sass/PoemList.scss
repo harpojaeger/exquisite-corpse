@@ -1,29 +1,6 @@
 ul.poem-list {
   margin-bottom: 2em;
-  
   li.poem {
     padding-bottom: 2em;
-
-    div.meta {
-      background-color: #eee;
-      border-radius: 2px;
-      margin-bottom: .5em;
-      padding: .3em .5em;
-
-      a.hover-link {
-        display:none;
-        margin-left: .5em;
-      }
-
-      &:hover a.hover-link {
-        display: inline;
-        text-decoration: none;
-      }
-    }
-
-    p.line {
-      margin: 0 0 0 1em;
-    }
   }
-
 }
