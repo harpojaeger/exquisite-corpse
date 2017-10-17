@@ -43,14 +43,13 @@ export function newPoemCreated(status){
 // Action creators to add a new line to an existing poem
 export function addNewLine(id, line, completed){
   return function(dispatch) {
-    api.nextline(id, line, completed)
+    return api.nextline(id, line, completed)
     .then(function(res) {
       dispatch(requestPromptRefresh())
       dispatch(newLineAdded('VICTORY'))
       if(completed) {
         dispatch(refreshPoemCounts())
         dispatch(fetchCompletedPoems())
-        // Todo: build a scroller action to show the just-finished poem
       }
 
     })

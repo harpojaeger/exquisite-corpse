@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import { Button, FormControl } from 'react-bootstrap'
 import spinner from '../../static/spinner.gif'
@@ -7,6 +8,7 @@ const Entities = require('html-entities').AllHtmlEntities
 const entities = new Entities()
 import Loader from './Loader'
 import { requestPromptRefresh, addNewLine } from '../redux/actions/editing.js'
+import { loadPoemByID } from '../redux/actions/completedPoems.js'
 
 function ordinal(n) {
   var s=["th","st","nd","rd"],
@@ -35,7 +37,7 @@ class NewLine extends Component {
       var completed = false
       e.target.value === 'end' && (completed = true)
       this.props.submitNewLine(this.props.id, this.state.nextline, completed)
-      .then(this.props.loadPoemByID(this.props.history, this.props.id))
+      .then(this.props.loadPoemByID(this.props.history, String(this.props.id)))
       this.setState( { nextline: '' })
     }
   }
@@ -96,6 +98,8 @@ NewLine.propTypes = {
   uncompletedcount: PropTypes.number.isRequired,
   refreshPrompt: PropTypes.func.isRequired,
   submitNewLine: PropTypes.func.isRequired,
+  loadPoemByID: PropTypes.func.isRequired,
+
 }
 
 const mapStateToProps = state => {
@@ -111,13 +115,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     refreshPrompt: () => dispatch(requestPromptRefresh()),
-    submitNewLine: (id, line, completed) => dispatch(addNewLine(id, line, completed))
+    submitNewLine: (id, line, completed) => dispatch(addNewLine(id, line, completed)),
+    loadPoemByID: (history, id) => dispatch(loadPoemByID(history,id))
   }
 }
 
-const ConnectedNewLine = connect(
+const ConnectedNewLine = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(NewLine)
+)(NewLine))
 
 export default ConnectedNewLine

@@ -19,3 +19,9 @@ export function receiveCompletedPoems(status, poems){
 export function displayMorePoems(){
   return { type: DISPLAY_MORE_POEMS }
 }
+
+export function loadPoemByID(history, id){
+  return function(dispatch){
+    history.push(id)
+  }
+}
