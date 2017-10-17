@@ -18,7 +18,8 @@ class NewLine extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      nextline: ''
+      nextline: '',
+      minlines: Math.floor(Math.random() * (10 - 4 + 1)) + 5
     }
     this.handleNextLineChange = this.handleNextLineChange.bind(this)
     this.handleNextLineSubmit = this.handleNextLineSubmit.bind(this)
@@ -34,13 +35,17 @@ class NewLine extends Component {
       var completed = false
       e.target.value === 'end' && (completed = true)
       this.props.submitNewLine(this.props.id, this.state.nextline, completed)
+      .then(this.props.loadPoemByID(this.props.history, this.props.id))
       this.setState( { nextline: '' })
     }
   }
 
-  render() {
+  componentWillReceiveProps() {
     // Each time a new poem is displayed, choose a random minimum number of lines between 4 and 10.
-    let minlines = Math.floor(Math.random() * (10 - 4 + 1)) + 5
+    this.setState({minlines: Math.floor(Math.random() * (10 - 4 + 1)) + 5})
+  }
+
+  render() {
     return(
       <div className={this.props.id ? '' : 'hidden'}>
         <div>
@@ -73,7 +78,7 @@ class NewLine extends Component {
             onClick={this.handleNextLineSubmit}
             value='end'
             // Only display the end button if the poem is already at least minlines lines long and there are at least 11 open poems.
-            disabled={this.props.promptloading || this.props.numlines < minlines || this.props.uncompletedcount < 10 }>
+            disabled={this.props.promptloading || this.props.numlines < this.state.minlines || this.props.uncompletedcount < 10 }>
             End
           </Button>
         </form>
