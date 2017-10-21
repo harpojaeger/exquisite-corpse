@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import ConnectedPoemList from './PoemList'
 import Loader from './Loader'
 import ConnectedLoadMoreButton from './LoadMoreButton.js'
+import CompletedPoemSorter from './CompletedPoemSorter'
 import '../styles/PoemContainer.css'
 import { END_DATE, ASC } from '../redux/actions/completedPoems.js'
 
@@ -28,6 +29,7 @@ function PoemContainer(props) {
     <div className='poem-container'>
       <h3>Completed poems</h3>
       <Loader visible={ props.poems.length === 0 }>Loading...</Loader>
+      <CompletedPoemSorter />
       <ConnectedPoemList poems={sortedPoems.slice(0, props.to)}/>
       <ConnectedLoadMoreButton />
     </div>
