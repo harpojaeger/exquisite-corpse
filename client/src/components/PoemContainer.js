@@ -29,10 +29,7 @@ function PoemContainer(props) {
     <div className='poem-container'>
       <h3>Completed poems</h3>
       <Loader visible={ props.poems.length === 0 }>Loading...</Loader>
-      <<<<<<< HEAD
       <CompletedPoemSorter />
-      =======
-      >>>>>>> d252a05a7abcd78f664ce37ba3dd881e1ba5382c
       <ConnectedPoemList poems={sortedPoems.slice(0, props.to)}/>
       <ConnectedLoadMoreButton />
     </div>
