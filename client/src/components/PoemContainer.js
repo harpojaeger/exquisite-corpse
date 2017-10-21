@@ -11,17 +11,19 @@ function PoemContainer(props) {
     <div className='poem-container'>
       <h3>Completed poems</h3>
       <Loader visible={ props.poems.length === 0 }>Loading...</Loader>
-      <ConnectedPoemList />
+      <ConnectedPoemList poems={props.poems.slice(0, props.to)}/>
       <ConnectedLoadMoreButton />
     </div>
   )
 }
 PoemContainer.propTypes = {
   poems: PropTypes.array.isRequired,
+  to: PropTypes.number.isRequired,
 }
 const mapStateToProps = state => {
   return {
-    poems: state.poems
+    poems: state.poems,
+    to: state.to
   }
 }
 const ConnectedPoemContainer = connect(
