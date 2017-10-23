@@ -1,6 +1,6 @@
 {
   "name": "exquisite-corpse",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Online surrealist poetry generator",
   "main": "server.js",
   "scripts": {
