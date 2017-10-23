@@ -40,3 +40,4 @@ jspm_packages
 *.sql
 client/node_modules
 client/src/styles/**
+client/build

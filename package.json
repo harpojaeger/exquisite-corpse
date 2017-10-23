@@ -10,7 +10,8 @@
     "start-client": "cd client && npm run start",
     "build-css": "cd client && npm run build-css",
     "watch-css": "cd client && npm run watch-css",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
