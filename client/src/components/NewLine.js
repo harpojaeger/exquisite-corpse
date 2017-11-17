@@ -79,8 +79,8 @@ class NewLine extends Component {
             name='action'
             onClick={this.handleNextLineSubmit}
             value='end'
-            // Only display the end button if the poem is already at least minlines lines long and there are at least 11 open poems.
-            disabled={this.props.promptloading || this.props.numlines < this.state.minlines || this.props.uncompletedcount < 10 }>
+            // Only display the end button if the poem is already at least minlines lines long and there are at least 26 open poems.
+            disabled={this.props.promptloading || this.props.numlines < this.state.minlines || this.props.uncompletedcount < 25 }>
             End
           </Button>
         </form>
