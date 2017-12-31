@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import '../styles/PoemList.css'
+import '../sass/PoemList.scss'
 import Poem from './Poem'
 
 function PoemList(props) {

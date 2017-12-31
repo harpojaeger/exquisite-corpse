@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import '../styles/Editor.css'
+import '../sass/Editor.scss'
 import { refreshPoemCounts } from '../redux/actions/poemCounts.js'
 import { requestPromptRefresh } from '../redux/actions/editing.js'
 import ConnectedNewLine from './NewLine'

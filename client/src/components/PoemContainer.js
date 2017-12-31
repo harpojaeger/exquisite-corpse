@@ -5,7 +5,7 @@ import ConnectedPoemList from './PoemList'
 import Loader from './Loader'
 import ConnectedLoadMoreButton from './LoadMoreButton.js'
 import CompletedPoemSorter from './CompletedPoemSorter'
-import '../styles/PoemContainer.css'
+import '../sass/PoemContainer.scss'
 import { END_DATE, ASC } from '../redux/actions/completedPoems.js'
 
 function PoemContainer(props) {

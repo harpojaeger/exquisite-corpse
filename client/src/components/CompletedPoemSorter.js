@@ -3,7 +3,7 @@ import { FormControl } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { setSortBy, setSortOrder } from '../redux/actions/completedPoems.js'
-import '../styles/CompletedPoemSorter.css'
+import '../sass/CompletedPoemSorter.scss'
 
 
 function CompletedPoemSorter(props){

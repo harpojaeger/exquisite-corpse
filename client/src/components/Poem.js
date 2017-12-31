@@ -4,7 +4,7 @@ import { Glyphicon } from 'react-bootstrap'
 import dateFormat from 'dateformat'
 const Entities = require('html-entities').AllHtmlEntities
 const entities = new Entities()
-require('../styles/Poem.css')
+require('../sass/Poem.scss')
 
 function Poem(props) {
   return (

@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "start": "npm run build-css & npm-run-all -p watch-css start-server start-client",
+    "start": "npm-run-all -p start-server start-client",
     "start-server": "node server.js",
     "start-client": "cd client && npm run start",
     "build-css": "cd client && npm run build-css",
