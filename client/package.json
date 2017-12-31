@@ -58,8 +58,6 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "build-css": "node-sass src/sass -o src/styles",
-    "watch-css": "npm run build-css && node-sass src/sass -o src/styles --watch --recursive"
   },
   "jest": {
     "collectCoverageFrom": [
