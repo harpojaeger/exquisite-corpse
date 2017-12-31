@@ -1,7 +1,6 @@
-const api = require('../../../utils/api')
 import { refreshPoemCounts } from './poemCounts'
 import { fetchCompletedPoems } from './completedPoems'
-
+const api = require('../../utils/api')
 export const FETCH_NEW_PROMPT = 'FETCH_NEW_PROMPT'
 export const PROMPT_REFRESHED = 'PROMPT_REFRESHED'
 export const NEW_POEM_CREATED = 'NEW_POEM_CREATED'

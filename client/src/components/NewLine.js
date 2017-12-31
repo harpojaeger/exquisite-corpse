@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import { Button, FormControl } from 'react-bootstrap'
-import spinner from '../../static/spinner.gif'
-const Entities = require('html-entities').AllHtmlEntities
-const entities = new Entities()
+import spinner from '../static/spinner.gif'
 import Loader from './Loader'
 import { requestPromptRefresh, addNewLine } from '../redux/actions/editing.js'
 import { loadPoemByID } from '../redux/actions/completedPoems.js'
+const Entities = require('html-entities').AllHtmlEntities
+const entities = new Entities()
 
 function ordinal(n) {
   var s=["th","st","nd","rd"],

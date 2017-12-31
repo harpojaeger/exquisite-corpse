@@ -47,4 +47,4 @@ const ConnectedEditor = connect(
   mapDispatchToProps
 )(Editor)
 
-module.exports = ConnectedEditor
+export default ConnectedEditor

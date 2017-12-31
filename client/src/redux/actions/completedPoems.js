@@ -1,4 +1,4 @@
-const api = require('../../../utils/api')
+const api = require('../../utils/api')
 
 export const DISPLAY_MORE_POEMS = 'DISPLAY_MORE_POEMS'
 export const RECEIVE_COMPLETED_POEMS = 'RECEIVE_COMPLETED_POEMS'
