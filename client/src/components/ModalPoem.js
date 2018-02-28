@@ -4,7 +4,6 @@ import { withRouter } from 'react-router'
 import { Modal, Button } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import Poem from './Poem'
-import { loadPoemByID } from '../redux/actions/completedPoems.js'
 
 class ModalPoem extends Component{
   constructor(props){
@@ -16,12 +15,13 @@ class ModalPoem extends Component{
     this.setState( { showModal: true} )
   }
   close() {
-    this.setState({ showModal: false }, () => setTimeout(()=>this.props.clearURL(this.props.history), 150))
+    this.setState({ showModal: false }, () => setTimeout(()=>this.props.history.push(''), 150))
+
   }
   render(){
     return(
       <Modal show={this.state.showModal} onHide={this.close}>
-        <Poem id={this.props.poem.id} starttime={this.props.poem.starttime} endtime={this.props.poem.endtime} lines={this.props.poem.lines} showSelfLink={false}/>
+        <Poem id={this.props.poem.id} starttime={this.props.poem.starttime} endtime={this.props.poem.endtime} lines={this.props.poem.lines} />
         <Modal.Footer>
           <Button onClick={this.close}>Close</Button>
         </Modal.Footer>
@@ -31,8 +31,7 @@ class ModalPoem extends Component{
 }
 
 ModalPoem.propTypes = {
-  poem: PropTypes.object.isRequired,
-  clearURL: PropTypes.func.isRequired,
+  poem: PropTypes.object.isRequired
 }
 
 const ModalPoemContainer = (props) => {
@@ -44,13 +43,9 @@ const ModalPoemContainer = (props) => {
   return(
     <div>
       {(typeof thispoem !== 'undefined') &&
-        <ModalPoem poem={thispoem} history={props.history} clearURL={props.clearURL}/>}
+        <ModalPoem poem={thispoem} history={props.history}/>}
     </div>
   )
-}
-
-ModalPoemContainer.propTypes = {
-  clearURL: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -60,15 +55,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    clearURL: (history) => dispatch(loadPoemByID(history, ''))
-  }
-}
-
 const ConnectedModalPoemContainer = withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(ModalPoemContainer))
 
 export default ConnectedModalPoemContainer

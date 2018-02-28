@@ -23,6 +23,7 @@ PoemList.propTypes = {
 
 const mapStateToProps = state => {
   return {
+    poems: state.poems.slice(0, state.to),
     displayModal: Boolean(state.id)
   }
 }
