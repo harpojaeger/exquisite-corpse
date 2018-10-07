@@ -10,3 +10,15 @@ Source code for this project (which is different from the content of the poems t
 
 # Specs
 Frontend built with React and <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a>.  Backend built with Node.js and Express.  <a href="http://exquisitecorpse.io">exquisitecorpse.io</a> runs on Heroku.  Thanks to <a href="https://github.com/tylermcginnis">@tylermcginness</a> for <a href="https://reacttraining.com/online/react-fundamentals">a terrific React tutorial</a>, and thanks to a million different Stack Exchange answers and commenters.
+
+# Changelog
+Additional contributors are credited.
+
+- 2018-10-07, v1.2.2: fixed CSS incompatibilities resulting from including Bootstrap v4 instead of v3, as react-bootstrap requires.
+2017
+- 2017-10-23, v1.2.1: added indentation when wrapping lines of poems (nmorduch).
+- 2017-10-21, v1.2.0: added sorting controls.
+- 2017-10-17, v1.1.2: display a completed poem in a modal dialog when user ends it.
+- 2017-10-13, v1.1.1: removed link to self in completed poem modal.
+- 2017-10-13, v1.1.0: updated to use Redux state management, plus some UI changes. More details [here](http://www.harpojaeger.com/2017/10/13/exquisite-corpse-110).
+- for older versions, read about the [history of the project](http://www.harpojaeger.com/2017/05/10/exquisite-corpse).
