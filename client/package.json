@@ -6,16 +6,16 @@
     "axios": "^0.16.1",
     "dateformat": "^2.0.0",
     "html-entities": "^1.2.1",
+    "node-sass": "^4.5.2",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-scripts": "2.1.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0",
-    "node-sass": "^4.5.2",
-    "react-scripts": "0.9.5"
+    "redux-thunk": "^2.2.0"
   },
   "proxy": "http://localhost:5000/",
   "scripts": {
@@ -25,5 +25,11 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass src/sass -o src/styles",
     "watch-css": "npm run build-css && node-sass src/sass -o src/styles --watch --recursive"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
