@@ -13,4 +13,4 @@ Loader.propTypes = {
   visible: PropTypes.bool.isRequired,
 }
 
-module.exports = Loader
+export default Loader

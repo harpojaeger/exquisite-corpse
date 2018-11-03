@@ -53,4 +53,4 @@ const ConnectedPoemContainer = connect(
   mapStateToProps
 )(PoemContainer)
 
-module.exports = ConnectedPoemContainer
+export default ConnectedPoemContainer

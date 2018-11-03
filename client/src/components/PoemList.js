@@ -32,4 +32,4 @@ const ConnectedPoemList = connect(
   mapStateToProps
 )(PoemList)
 
-module.exports = ConnectedPoemList
+export default ConnectedPoemList

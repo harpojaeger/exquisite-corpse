@@ -60,4 +60,4 @@ class App extends Component {
   }
 }
 
-module.exports = App
+export default App
