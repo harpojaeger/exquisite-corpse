@@ -84,7 +84,11 @@ class NewLine extends Component {
             End
           </Button>
         </form>
-        (<a href='#' onClick={this.props.refreshPrompt}>get a different prompt</a>)
+        (
+          <Button className="new-prompt" onClick={this.props.refreshPrompt}>
+            get a different prompt
+          </Button>
+        )
       </div>
     )
   }
