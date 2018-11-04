@@ -14,8 +14,8 @@ Frontend built with React and <a href="https://github.com/facebookincubator/crea
 # Changelog
 Additional contributors are credited.
 
+- 2018-11-03 Upgrade to react-scripts 2.1.1 to address [CVE-2017-16138](https://nvd.nist.gov/vuln/detail/CVE-2017-16138) and another vulnerability. Some minor refactoring to comply with 2.1.1's stricter import ordering rules, and warnings related to a11y and an `<a rel>` vulnerability.
 - 2018-10-07, v1.2.2: fixed CSS incompatibilities resulting from including Bootstrap v4 instead of v3, as react-bootstrap requires.
-2017
 - 2017-10-23, v1.2.1: added indentation when wrapping lines of poems (nmorduch).
 - 2017-10-21, v1.2.0: added sorting controls.
 - 2017-10-17, v1.1.2: display a completed poem in a modal dialog when user ends it.
