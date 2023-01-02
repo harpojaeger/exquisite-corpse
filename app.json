@@ -2,7 +2,7 @@
   "name": "exquisite-corpse",
   "scripts": {},
   "env": {},
-  "stack": "heroku-18",
+  "stack": "heroku-22",
   "formation": {},
   "addons": [
     "heroku-postgresql"
