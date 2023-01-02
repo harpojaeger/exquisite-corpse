@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Glyphicon } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faLink} from '@fortawesome/free-solid-svg-icons'
 import dateFormat from 'dateformat'
 const Entities = require('html-entities').AllHtmlEntities
 const entities = new Entities()
@@ -20,7 +21,7 @@ function Poem(props) {
         {props.starttime && ')'}
         { props.showSelfLink &&
           <a href={'#'+props.id} className='hover-link'>
-            <Glyphicon glyph='link' />
+            <FontAwesomeIcon icon={faLink} />
           </a>
         }
       </div>

@@ -3,7 +3,9 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faQuestionCircle} from '@fortawesome/free-solid-svg-icons'
 import { HashRouter as Router, Route } from 'react-router-dom'
 import '../styles/App.css'
 import ConnectedPoemContainer from './PoemContainer'
@@ -15,6 +17,7 @@ import { requestPromptRefresh } from '../redux/actions/editing.js'
 import rootReducer from '../redux/reducers/reducers.js'
 
 const loggerMiddleware = createLogger()
+const questionMark = <FontAwesomeIcon icon={faQuestionCircle} />
 
 const store = createStore(
   rootReducer,
@@ -46,7 +49,7 @@ class App extends Component {
               <OverlayTrigger
                 overlay={longEnoughTooltip}
               placement='top'>
-                <sup><Glyphicon glyph='question-sign' /></sup>
+                <sup>questionMark</sup>
               </OverlayTrigger>
             &nbsp;you can also choose to end it, at which point the whole thing becomes public.</p>
             <p>A RSS feed of completed poems is available <a href='http://exquisitecorpse.io/feed/completed'>here</a>.</p>
