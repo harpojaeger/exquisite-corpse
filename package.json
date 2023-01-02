@@ -7,7 +7,7 @@
     "test": "mocha",
     "start": "yarn run build-css & npm-run-all -p watch-css start-server start-client",
     "start-server": "node server.js",
-    "start-client": "cd client && hyarn run start",
+    "start-client": "cd client && yarn run start",
     "build-css": "cd client && yarn run build-css",
     "watch-css": "cd client && yarn run watch-css",
     "build": "cd client && yarn install && yarn run build",
