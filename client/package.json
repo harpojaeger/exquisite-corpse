@@ -23,11 +23,11 @@
   "proxy": "http://localhost:5000/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run build-css && react-scripts build",
+    "build": "yarn run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass src/sass -o src/styles",
-    "watch-css": "npm run build-css && node-sass src/sass -o src/styles --watch --recursive"
+    "watch-css": "yarn run build-css && node-sass src/sass -o src/styles --watch --recursive"
   },
   "browserslist": [
     ">0.2%",
