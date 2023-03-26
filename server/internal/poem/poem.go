@@ -8,17 +8,16 @@ import (
 
 // Poem represents a single poem in the Exquisite Corpse project. It may be
 // in-progress or completed.
-type Poem interface {
-	IsCompleted() bool
-	Lines() []string
-	StartTime() time.Time
-	CompleteTime() time.Time
-	AddLine(string) error
-	Complete() error
+type Poem struct {
+	ID                      int
+	Complete                bool
+	Lines                   []string
+	StartTime, CompleteTime time.Time
 }
 
-// poem is an internal implementation of Poem, using GORM.
-type poem struct {
+// internalPoem is a representation of a poem internal to this package. It uses
+// GORM to manage the database representation of the poem.
+type internalPoem struct {
 	gorm.Model
 	lines        []string
 	complete     bool
@@ -29,32 +28,14 @@ type PoemManager struct {
 	Database gorm.DB
 }
 
-func (p poem) IsCompleted() bool {
-	return p.complete
-}
-
-func (p poem) Lines() []string {
-	return p.lines
-}
-
-func (p poem) StartTime() time.Time {
-	return p.CreatedAt
-}
-
-func (p poem) CompleteTime() time.Time {
-	return p.completeTime
-}
-
-func (p poem) AddLine(string) error {
-	return nil
-}
-
-func (p poem) Complete() error {
-	return nil
-}
-
 func (pm *PoemManager) GetPoem(pkey int) Poem {
-	var p poem
+	var p internalPoem
 	pm.Database.First(p, pkey)
-	return p
+	return Poem{
+		ID:           pkey,
+		Complete:     p.complete,
+		Lines:        p.lines,
+		StartTime:    p.CreatedAt,
+		CompleteTime: p.completeTime,
+	}
 }
