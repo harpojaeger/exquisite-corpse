@@ -53,8 +53,8 @@ func (p poem) Complete() error {
 	return nil
 }
 
-func (pm *PoemManager) GetPoem(id string) Poem {
+func (pm *PoemManager) GetPoem(pkey int) Poem {
 	var p poem
-	pm.Database.First(p)
+	pm.Database.First(p, pkey)
 	return p
 }
