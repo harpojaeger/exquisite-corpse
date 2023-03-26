@@ -25,26 +25,36 @@ type poem struct {
 	completeTime time.Time
 }
 
-func (p *poem) IsCompleted() bool {
+type PoemManager struct {
+	Database gorm.DB
+}
+
+func (p poem) IsCompleted() bool {
 	return p.complete
 }
 
-func (p *poem) Lines() []string {
+func (p poem) Lines() []string {
 	return p.lines
 }
 
-func (p *poem) StartTime() time.Time {
+func (p poem) StartTime() time.Time {
 	return p.CreatedAt
 }
 
-func (p *poem) CompleteTime() time.Time {
+func (p poem) CompleteTime() time.Time {
 	return p.completeTime
 }
 
-func (p *poem) AddLine(string) error {
+func (p poem) AddLine(string) error {
 	return nil
 }
 
-func (p *poem) Complete() error {
+func (p poem) Complete() error {
 	return nil
+}
+
+func (pm *PoemManager) GetPoem(id string) Poem {
+	var p poem
+	pm.Database.First(p)
+	return p
 }
